@@ -1,0 +1,10 @@
+{
+  "background_color": "#FFF",
+  "display": "standalone",
+  "name": "PassGen",
+  "short_name": "PassGen",
+  "version": "com.thomaspkovalchuk.PassGen",
+  "description": "PassGen is a password generation and storage application",
+  "icons": [],
+  "start_url": "index.html"
+}

@@ -1,0 +1,180 @@
+<html>
+<script type="text/javascript" src="js/view_controller.js"></script>
+<script type="text/javascript" src="js/controller.js"></script>
+<script type="text/javascript" src="js/db_controller.js"></script>
+<div id="page-selector" class="w3-bottom w3-padding w3-grey">
+    <div class="w3-row">
+        <div class="w3-col s3 m3 l3">
+            <a id="btnAdd"><i class="w3-xxlarge material-icons">add</i></a>
+        </div>
+        <div class="w3-col s3 m3 l3">
+            <a id="btnList"><i class="w3-xxlarge material-icons">list</i></a>
+        </div>
+        <div class="w3-col s3 m3 l3">
+            <a id="btnAccount"><i class="w3-xxlarge material-icons">account_circle</i></a>
+        </div>
+        <div class="w3-col s3 m3 l3">
+            <a id="btnSearch"><i class="w3-xxlarge material-icons">search</i></a>
+        </div>
+    </div>
+</div>
+    
+<div id="login-modal" class="w3-modal">
+    <div class="w3-modal-content w3-padding">
+        <div class="w3-container w3-padding">
+            <h4>Login</h4>
+            <hr class="my-4">
+            <div class="w3-row">
+                <div class="w3-third">
+                    <b>Username:</b>
+                </div>
+                <div class="w3-twothird">
+                    <input class="w3-input" id="txtUsername" type="text" />
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-third">
+                    <b>Password:</b>
+                </div>
+                <div class="w3-twothird">
+                    <input class="w3-input" id="txtPassword" type="password" />
+                </div>
+            </div>
+            <div class="w3-row">
+                <div id="btnLogin" class="w3-button">Login</div>
+                <div id="btnCreateNewAccount" class="w3-button">Create New Account</div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<div id="add-item-modal" class="w3-modal">
+    <div class="w3-modal-content  w3-padding">
+        <div class="w3-container w3-padding">
+            <h4>Create New Entry</h4>
+            <hr class="my-4">
+            <label class="w3-third">Site Name:</label>
+            <div class="w3-twothird">
+                <input class="w3-input" type="text" id="txtNewSiteName" />
+            </div>
+            <label class="w3-third">Username:</label>
+            <div class="w3-twothird">
+                <input class="w3-input" type="text" id="txtNewUsername" />
+            </div>
+            <label class="w3-third">Password:</label>
+            <div class="w3-twothird">
+                <input class="w3-input" type="text" id="txtNewPassword" />
+            </div>
+            <div id="btnGenerate" class="w3-button">Generate</div>
+            <div id="btnSubmitNewAccount" class="w3-button">Create Entry</div>
+            <div class="btnCancel w3-button">Cancel</div>
+        </div>
+    </div>
+</div>
+
+<div id="search-modal" class="w3-modal">
+    <div class="w3-modal-content  w3-padding">
+        <div class="w3-container w3-padding">
+            <h4>Search</h4>
+            <hr class="my-4">
+            <div class="w3-third">
+                <label>Search By:</label>
+                <select id="cboSearchBy">
+                    <option value="site_name">Site Name</option>
+                    <option value="username">Username</option>
+                    <option value="password">Password</option>
+                </select>
+            </div>
+            <label class="w3-third">Search Term:</label>
+            <div class="w3-twothird">
+                <input class="w3-input" type="text" id="txtSearchTerm" />
+            </div>
+            <div id="btnSearchFor" class="w3-button">Search</div>
+            <div class="btnCancel w3-button">Cancel</div>
+        </div>
+    </div>
+</div>
+
+<div id="new-account-modal" class="w3-modal">
+    <div class="w3-modal-content w3-padding">
+        <div class="w3-container w3-padding">
+            <h4>Create A New Account</h4>
+            <hr class="my-4">
+            <div class="w3-row">
+                <div class="w3-third">
+                    <b>Username:</b>
+                </div>
+                <div class="w3-twothird">
+                    <input class="w3-input" id="txtNewUsernameAccount" type="text" />
+                </div>
+            </div>
+            <div class="w3-row">
+                <div class="w3-third">
+                    <b>Password:</b>
+                </div>
+                <div class="w3-twothird">
+                    <input class="w3-input" id="txtNewPasswordAccount" type="password" />
+                </div>
+            </div>
+            <div class="w3-row">
+                <div id="btnCreate" class="w3-button">Create</div>
+                <div class="btnCancel w3-button">Cancel</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="account-item-modal" class="w3-modal">
+    <div class="w3-modal-content w3-padding">
+        <div class="w3-container w3-padding">
+            <h4>Entry Details</h4>
+            <hr class="my-4">
+            <div class="w3-row" id="account-item-modal-html"></div>
+            <div class="w3-row">
+                <div class="btnCancel w3-button">Cancel</div>
+                <div class="w3-button" id="btnCopy">Copy</div>
+                <div class="w3-button" id="btnDelete">Delete</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="account-modal" class="w3-modal">
+    <div class="w3-modal-content w3-padding">
+        <div class="w3-container w3-padding">
+            <h4>Account Details</h4>
+            <hr class="my-4">
+            <div id="account-info"></div>
+            <div class="w3-row">
+                <div class="btnCancel w3-button">Cancel</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="panelSuccess" class="w3-modal">
+    <div class="w3-modal-content w3-padding w3-green">
+        <div class="w3-container w3-padding">
+            <div class="w3-row">
+                <i class="w3-xxlarge material-icons">done</i>
+                <h3>Success!</h3>
+                <p>Your requested transaction succeeded</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="panelFail" class="w3-modal">
+    <div class="w3-modal-content w3-padding w3-red">
+        <div class="w3-container w3-padding">
+            <div class="w3-row">
+                <i class="w3-xxlarge material-icons">error_outline</i>
+                <h3>Failure</h3>
+                <p>Your requested transaction failed</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

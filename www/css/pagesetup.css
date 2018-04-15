@@ -1,0 +1,36 @@
+a {
+    text-decoration: none;
+    padding-left: 3.5em;
+}
+
+.navbar {
+    display: inline;
+    float: right;
+}
+
+#page-selector a {
+    color: #FFD700;
+    padding-left: 0em;
+    display: block;
+    text-align: center;
+
+}
+
+.line {
+    float: left;
+    padding: 1em;
+    display: inline;
+}
+
+#top-nav #brand-name {
+    color: #FFD700;
+    text-align: center;
+}
+
+#panelSuccess {
+    display: none;
+}
+
+#panelFail {
+    display: none;
+}
