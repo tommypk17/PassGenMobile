@@ -99,7 +99,7 @@ function login(username, password) {
 }
 
 function createNewUser(username, password) {
-    var arr = [username, password];
+    var arr = [username, password, ];
     arr = encryptArray(arr);
     db.transaction(createUser(arr), errorCb);
     return true;
@@ -109,6 +109,11 @@ function deleteEntry(sitename, username, password) {
     var arr = [sitename, username, password];
     arr = encryptArray(arr);
     db.transaction(deleteFromDb(arr), errorCb);
+}
+
+function deleteUserEntry(username, password) {
+    var arr = [username, password];
+    db.transaction(deleteUser(arr), errorCb);
 }
 
 function checkLoggedIn() {
@@ -137,4 +142,13 @@ function loggedIn(isLoggedIn) {
 function sleep(delay) {
     var start = new Date().getTime();
     while (new Date().getTime() < start + delay);
+}
+
+function getUUID() {
+  function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }

@@ -2,8 +2,8 @@ var db;
 
 function buildDb() {
     db = window.openDatabase("passgen_db", "1.0", "PassGen Database", 6 * 1024 * 1024);
-    db.transaction(createDb, errorCb, successCb);
-    db.transaction(createUserDb, errorCb, successCb);
+    db.transaction(createDb);
+    db.transaction(createUserDb);
     renderDbList();
 }
 
@@ -15,6 +15,14 @@ function queryUser(arr) {
     return function (tx) {
         var sql = "SELECT * FROM user WHERE username=? AND password=?";
         tx.executeSql(sql, [arr[0], arr[1]], checkCredentials, errorCb);
+    }
+}
+
+function deleteUser(arr) {
+    return function (tx){
+        var sql = "DELETE FROM user WHERE username=? AND password=?";
+        tx.executeSql(sql, [arr[0], arr[1]], successCb, errorCb);
+        tx.executeSql("DROP TABLE password", [], successCb, errorCb);
     }
 }
 
@@ -35,8 +43,10 @@ function checkCredentials(tx, result) {
 
 function createUser(arr) {
     return function (tx) {
-        var sql = "INSERT INTO IF NOT EXISTS user (username, password) VALUES (?,?)";
+        var sql = "INSERT INTO user (username, password) VALUES (?,?)";
+        console.log(sql);
         tx.executeSql(sql, [arr[0], arr[1]], successCb, errorCb);
+        success();
     }
 }
 
@@ -54,7 +64,6 @@ function errorCb(err) {
 }
 
 function successCb() {
-
 }
 
 function insertDb(arr) {
@@ -78,8 +87,7 @@ function searchDb(arr) {
 function deleteFromDb(arr) {
     return function (tx) {
         var sql = "DELETE FROM password WHERE site_name=? AND username=? AND password=?";
-        tx.executeSql(sql, [arr[0], arr[1], arr[2]], successCb, errorCb);
-        successQueryDb(tx);
+        tx.executeSql(sql, [arr[0], arr[1], arr[2]], successQueryDb, errorCb);
     }
 }
 
@@ -88,7 +96,8 @@ function successInsertDb(tx) {
 }
 
 function successQueryDb(tx) {
-    tx.executeSql("SELECT * FROM password", [], renderList, errorCb);
+    var sql = "SELECT * FROM password";
+    tx.executeSql(sql, [], renderList, errorCb);
 
 }
 

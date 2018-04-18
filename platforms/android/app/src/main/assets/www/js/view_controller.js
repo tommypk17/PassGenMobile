@@ -38,6 +38,16 @@ $(document).ready(function () {
         $("#account-info").html("<b>Username:</b> "+accountDetails[0] + "<br/><b>Password:</b> " + accountDetails[1]);
         $("#account-modal").css("display", "block");
     });
+    
+    
+    $("#btnDeleteAccount").click(function(){
+        var username = window.sessionStorage.getItem("username");
+        var password = window.sessionStorage.getItem("password");
+        deleteUserEntry(username, password); 
+        window.sessionStorage.removeItem("username");
+        window.sessionStorage.removeItem("password");
+        window.location.reload();
+    });
 
     $("#btnSearch").click(function () {
         $("#search-modal").css("display", "block");
