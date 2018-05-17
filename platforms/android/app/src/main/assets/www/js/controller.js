@@ -12,7 +12,7 @@ function generatePassword() {
         var num = Math.floor(Math.random() * 10);
         if (i == 0) {
             password += String.fromCharCode(specChar);
-        } else if (i <= 4 && i > 0) {
+        } else if (i < 4 && i > 0) {
             password += String.fromCharCode(c);
         } else {
             password += num;
